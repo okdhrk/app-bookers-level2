@@ -3,7 +3,9 @@
 <!--Books-->
 <% @books.each do |book| %>
 <div>
-  <p>title：<%= book.title %></p>
+
+  <p><%= link_to 'title', book_path(book.id) %>：<%= book.title %></p>
+
   <p>body：<%= book.body %></p>
   <p>ユーザーネーム：<%= book.user.name %></p>
 </div>
