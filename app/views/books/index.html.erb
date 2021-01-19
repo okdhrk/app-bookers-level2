@@ -1,0 +1,10 @@
+<!--User info-->
+<!--New book-->
+<!--Books-->
+<% @books.each do |book| %>
+<div>
+  <p>title：<%= book.title %></p>
+  <p>body：<%= book.body %></p>
+  <p>ユーザーネーム：<%= book.user.name %></p>
+</div>
+<% end %>
