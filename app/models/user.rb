@@ -11,5 +11,6 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy
   # bookモデルの関連付け
+  attachment :profile_image
 
 end
