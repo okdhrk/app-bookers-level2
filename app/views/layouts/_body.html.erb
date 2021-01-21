@@ -1,0 +1,18 @@
+<div class="profile-container">
+   <!--以下プロフィール画像をマイページに反映させる（５章)-->
+  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <h3 class="profile-name">name <%= @user.name %></h3>
+  <h3 class="profile-name">introduction <%= @user.introduction %></h3>
+ <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+
+<h1>投稿フォーム</h1>
+<%= form_with model: @book, local:true do |f| %>
+  <h4>title</h4>
+  <%= f.text_field :title %>
+  <h4>body</h4>
+  <%= f.text_area :body %>
+  <%= f.submit '投稿' %>
+<% end %>

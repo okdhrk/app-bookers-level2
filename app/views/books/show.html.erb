@@ -1,3 +1,22 @@
+<!--User info-->
+<div class="profile-container">
+  <h3 class="profile-name"><%= @user.name %></h3>
+  <!--以下プロフィール画像をマイページに反映させる（５章-->
+  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+ <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+<% @books.each do |book| %>
+  <p>title：<%= book.title %></p>
+  <p>body：<%= book.body %></p>
+  <p>ユーザーネーム：<%= book.user.name %></p>
+<% end %>
+</div>
+
+<!--New book-->
+
+<!--Books-->
 <div class="post-body">
   <p>title：<%= @book.title %></p>
   <p>body：<%= @book.body %></p>
