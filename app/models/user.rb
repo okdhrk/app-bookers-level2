@@ -13,4 +13,7 @@ class User < ApplicationRecord
   # bookモデルの関連付け
   attachment :profile_image
 
+  validatable :name, presence: true, length: { in: 2..20 }
+  validatable :body, presence: true, length: { maximum: 50 }
+
 end
