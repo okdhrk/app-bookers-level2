@@ -1,4 +1,11 @@
-<%= render 'layouts/body' %>
+<%= render 'layouts/body', user: current_user, book: Book.new %>
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
 <!--Books-->
 <% @books.each do |book| %>
   <p><%= link_to 'title', book_path(book.id) %>：<%= book.title %></p>

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!,except: [:top]
   def index
     @user = current_user
     @book = Book.new
