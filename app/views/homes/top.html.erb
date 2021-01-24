@@ -1,5 +1,8 @@
 <body>
   <main>
+    <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
   <div class="container">
     <div class="rou">
       <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
@@ -18,11 +21,11 @@
             <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
           </div>
           <div class="row">
-            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up"  %> 
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up"  %>
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   </div>
   </main>
   <footer>

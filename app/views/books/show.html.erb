@@ -1,28 +1,44 @@
-<!--User info-->
-<div class="profile-container">
-  <h3 class="profile-name"><%= @user.name %></h3>
-  <!--以下プロフィール画像をマイページに反映させる（５章-->
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
- <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
-<% @books.each do |book| %>
-  <p>title：<%= book.title %></p>
-  <p>body：<%= book.body %></p>
-  <p>ユーザーネーム：<%= book.user.name %></p>
+<% flash.each do |message_type, message| %>
+      <%= message %>
 <% end %>
-</div>
 
-<!--New book-->
+<%= render 'layouts/body', user: current_user, book: Book.new %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
+              <br>
+              <a href=""><%= @book.user.name %></a>
+            </td>
+            <td>
+              <%= @book.title %>
+            </td>
+            <td>
+              <%= @book.body %>
+            </td>
+            <td>
+              <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success edit_book_13250" %>
+            </td>
+            <td>
+              <% if @book.user == current_user %>
+                <%= link_to "削除", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger destroy_book_13250" %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</main>
 
-<!--Books-->
-<div class="post-body">
-  <p>title：<%= @book.title %></p>
-  <p>body：<%= @book.body %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
-  <p>投稿日時：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "削除", book_path(@book), method: :delete %>
-  <% end %>
-</div>
+<footer>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="mx-auto">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </div>
+  </div>
+</footer>

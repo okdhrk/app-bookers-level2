@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books.page(params[:page]).reverse_order
+    @book.user_id = current_user
   end
 
   def edit
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:success] = 'You have created book successfully.'
       redirect_to user_path(@user.id)
     else
       render :edit
