@@ -2,29 +2,31 @@
       <%= message %>
 <% end %>
 
-<%= render 'layouts/body', user: current_user, book: Book.new %>
+<%= render 'layouts/body', user: @user, book: Book.new %>
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table">
         <tbody>
           <tr>
             <td>
-              <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
+              <%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
               <br>
-              <a href=""><%= @book.user.name %></a>
+              <%= link_to @book.user.name, user_path(@user.id) %>
             </td>
             <td>
-              <%= @book.title %>
+              <%= link_to @book.title, book_path(@book.id) %>
             </td>
             <td>
               <%= @book.body %>
             </td>
             <td>
-              <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success edit_book_13250" %>
+              <% if @book.user == current_user %>
+                <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success edit_book_13250" %>
+              <% end %>
             </td>
             <td>
               <% if @book.user == current_user %>
-                <%= link_to "削除", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger destroy_book_13250" %>
+                <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger destroy_book_13250" %>
               <% end %>
             </td>
           </tr>

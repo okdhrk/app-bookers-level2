@@ -15,8 +15,8 @@
     <!--ログイン中は % if user_signed_in? % から % else % 間のコードが表示されます。-->
    <body>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
 
         <span><%= link_to 'Bookers', root_path, class: "navbar-brand" %></span>
 
@@ -39,27 +39,28 @@
       <%= link_to "Books", books_path, class: "fas fa-book-open nav-link text-light" %>
       </li>
       <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "fas fa-sign-out-alt nav-link text-light" %>
+        <%= link_to "logout", destroy_user_session_path, method: :delete, class: "fas fa-sign-out-alt nav-link text-light" %>
       </li>
     <% else %>
       <li>
-        <%= link_to "新規登録", new_user_registration_path, class: "fas fa-user-plus nav-link text-light" %>
+        <%= link_to "Home", root_path, class: "fas fa-home nav-link text-light" %>
       </li>
-
       <li>
         <%= link_to "About", homes_about_path, class: "fas fa-link nav-link text-light" %>
       </li>
-
       <li>
-        <%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt nav-link text-light" %>
+        <%= link_to "Sign up", new_user_registration_path, class: "fas fa-user-plus nav-link text-light" %>
+      </li>
+      <li>
+        <%= link_to "login", new_user_session_path, class: "fas fa-sign-in-alt nav-link text-light" %>
       </li>
     <% end %>
     </ul>
     </div>
-    </div>
-    </nav>
+        </div>
+      </nav>
     </header>
-
+   </body>
     <%= yield %>
-  </body>
+ 
 </html>

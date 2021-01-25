@@ -25,7 +25,7 @@ before_action :authenticate_user!,except: [:top]
 
   def show
     @book = Book.find(params[:id])
-    @user = current_user
+    @user = @book.user
   end
 
   def destroy
@@ -36,6 +36,10 @@ before_action :authenticate_user!,except: [:top]
 
   def edit
     @book = Book.find(params[:id])
+    @user = @book.user
+    if @user != current_user
+      redirect_to books_path
+    end
   end
 
   def update
