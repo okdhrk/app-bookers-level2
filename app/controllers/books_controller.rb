@@ -27,6 +27,7 @@ before_action :authenticate_user!,except: [:top]
     @book = Book.find(params[:id])
     @user = @book.user
     @book_comment = BookComment.new
+    
   end
 
   def destroy
