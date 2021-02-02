@@ -29,10 +29,35 @@
                 <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger destroy_book_13250" %>
               <% end %>
             </td>
+            <td>
+              <!--いいね機能-->
+              <div id=<%= "favorite" +  @book.id.to_s %>>
+                <!--favoriteを識別してあげる為に、book.idをつけてあげる-->
+              <%= render 'books/favorite', book: @book %>
+              </div>
+            </td>
+            <td>
+              <!--コメント機能-->
+              コメント数：<%= @book.book_comments.count %>
+            </td>
           </tr>
         </tbody>
       </table>
-    </div>
+      <!--コメント一覧・投稿フォーム-->
+      <% @book.book_comments.each do |book_comment| %>
+        <td><%= attachment_image_tag book_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %></td>
+        <td><%= book_comment.comment %></td>
+        <!--コメント削除-->
+        <td><% if @book_comment.user == current_user %>
+          <%= link_to "Destroy", book_path(@book), method: :delete %>
+          <% end %></td>
+        <br><%= book_comment.user.name %>
+      <% end %>
+
+      <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
+        <%= f.text_area :comment, rows:'5', cols:'80' %>
+        <%= f.submit "送信" %>
+      <% end %>
 </main>
 
 <footer>
