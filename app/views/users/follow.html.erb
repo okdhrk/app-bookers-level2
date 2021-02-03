@@ -1,0 +1,9 @@
+<%= form_with(model: current_user.following_relationships.build) do |f| %>
+  <%= f.hidden_field :following_id, value: @user.id %>
+  <%= f.submit "フォローする", class: "btn btn-outline-secondary" %>
+<% end %>
+
+<%= form_with(model: current_user.following_relationships.find_by(following_id: @user.id),method: :delete) do |f| %>
+  <%= f.hidden_field :following_id %>
+  <%= f.submit "フォロー", class: "btn btn-outline-secondary" %>
+<% end %>
