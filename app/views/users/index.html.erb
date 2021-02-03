@@ -30,7 +30,15 @@
             </td>
             <!--follow button-->
             <td>
-              <%= render partial: 'follow_relationships/follow', user: user %>
+                <% if user_signed_in? && user != current_user%>
+                  <div id=<%= "follow_form" +  user.id.to_s %>>
+                  <% if current_user.followings?(user) %>
+                    <%= render "follow_relationships/unfollow", user: user %>
+                  <% else %>
+                    <%= render "follow_relationships/follow", user: user %>
+                  <% end %>
+                  </div>
+                <% end %>
             </td>
             <td>
                <%= link_to "Show", user_path(user) %>
@@ -44,15 +52,7 @@
 
 
 
-<% if user_signed_in? && @user != current_user%>
-  <div id="follow_form">
-    <% if current_user.following?(@user) %>
-      <%= render "follow_relationships/unfollow" %>
-    <% else %>
-      <%= render "follow_relationships/follow" %>
-    <% end %>
-  </div>
-<% end %>
+
 
 <footer>
   <div class="container mt-5">

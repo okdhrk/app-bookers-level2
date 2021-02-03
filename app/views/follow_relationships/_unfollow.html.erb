@@ -1,3 +1,4 @@
-<%= link_to follow_relationship(user), method: :delete, remote: true do %>
-  フォロー外す
+<%= form_with(model: current_user.following_relationships.find_by(following_id: user.id),method: :delete) do |f| %>
+  <%= f.hidden_field :followings_id, value: user.id %>
+  <%= f.submit "フォロー解除" %>
 <% end %>

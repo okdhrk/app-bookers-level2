@@ -1,3 +1,4 @@
-<%= link_to follow_relationships_path, method: :post, remote: true do %>
-  フォローする
+<%= form_with(model: current_user.following_relationships.build) do |f| %>
+  <%= f.hidden_field :followings_id, value: user.id %>
+  <%= f.submit "フォローする" %>
 <% end %>
