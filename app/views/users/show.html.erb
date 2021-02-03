@@ -41,7 +41,7 @@
 
 <%= link_to "フォロワー(#{@user.followers.count})", followers_user_path(@user), class: "nav-link" %>
 
-<% if logged_in? && @user != current_user%>
+<% if user_signed_in? && @user != current_user%>
   <div id="follow_form">
     <% if current_user.following?(@user) %>
       <%= render "unfollow" %>
