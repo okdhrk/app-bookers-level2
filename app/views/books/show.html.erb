@@ -46,7 +46,7 @@
         <table class="table">
           <tbody>
             <!--コメント一覧-->
-            <div id=<% "bookcomment" + @book.id.to_s %>>
+            <div id="bookcomment_<%=@book.id.to_s %>">
               <%= render 'book_comments/bookcomment', book: @book %>
             </div>
           </tbody>
