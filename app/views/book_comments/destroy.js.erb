@@ -1,0 +1,2 @@
+<!--book comment destroy-->
+$("#bookcomment" + <%= @book.id.to_s %>).html("<%= j(render("book_comments/bookcomment", book:@book )) %>");
