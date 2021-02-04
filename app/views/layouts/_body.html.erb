@@ -15,6 +15,36 @@
             <th>introduction</th>
             <th><%= user.introduction %></th>
           </tr>
+          <tr>
+            <th>follows</th>
+            <th>
+            <%=link_to followings_user_path(user) do %>
+              <%= user.followings.count %>
+            <% end %>
+            </th>
+          </tr>
+          <tr>
+            <th>followers</th>
+            <th>
+            <%=link_to followers_user_path(user) do %>
+              <%= user.followers.count %>
+            <% end %>
+            </th>
+          </tr>
+          <tr>
+            <td>
+            <% if user_signed_in? && user != current_user%>
+              <div id=<%= "follow_form" +  user.id.to_s %>>
+              <% if current_user.followings?(user) %>
+                 <%= render "follow_relationships/unfollow", user: user %>
+               <% else %>
+                 <%= render "follow_relationships/follow", user: user %>
+              <% end %>
+               </div>
+               <td></td>
+            <% end %>
+            </td>
+          </tr>
         </tbody>
       </table>
         <div class="row">

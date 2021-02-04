@@ -1,1 +1,1 @@
-$("#follow_form" +  <%= @user.id.to_s %>).html("<%= j(render("follow_relationships/unfollow", user:@user )) %>");
+$("#follow_form" + <%= @user.id.to_s %>).html("<%= j(render("follow_relationships/unfollow", user:@user )) %>");
