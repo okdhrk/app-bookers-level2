@@ -1,2 +1,3 @@
 <!--book comment create-->
-$("#bookcomment_<%=@book.id.to_s %>").html("<%= j(render "book_comments/bookcomment", book:@book ) %>");
+$("#bookcomment_<%=@book.id %>").html("<%= j(render "book_comments/bookcomment", book: @book ) %>");
+$("textarea").val('');

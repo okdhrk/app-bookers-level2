@@ -44,11 +44,10 @@
         </tbody>
       </table>
         <table class="table">
-          <tbody>
+          <tbody id="bookcomment_<%=@book.id %>">
             <!--コメント一覧-->
-            <div id="bookcomment_<%=@book.id.to_s %>">
               <%= render 'book_comments/bookcomment', book: @book %>
-            </div>
+              
           </tbody>
         </table>
         <!--コメント投稿フォーム-->
